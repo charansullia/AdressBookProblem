@@ -9,6 +9,7 @@ namespace AdressBook
             AdressBookComputation.AddMember();
             AdressBookComputation.ViewContacts();
             AdressBookComputation.EditDetails();
+            AdressBookComputation.DeleteDetails();
                 
            
             

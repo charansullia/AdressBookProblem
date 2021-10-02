@@ -144,6 +144,38 @@ namespace AdressBook
                 }
             }
         }
+        public static void DeleteDetails()
+        {
+            int f = 0;
+            if (Contacts.Count > 0)
+            {
+                Console.Write("Enter name of a person you want to Delete: ");
+                string deleteName = Console.ReadLine();
 
+                foreach (var person in Contacts)
+                {
+                    if (deleteName.ToLower() == person.FirstName.ToLower())
+                    {
+                        //removing from list
+                        Console.WriteLine("\t \t \tDELETED");
+                        Console.WriteLine($"You have deleted {person.FirstName} contact");
+                        Contacts.Remove(person);
+                        f = 1;
+                        break;
+                    }
+                    PrintValues(person);
+                }
+                if (f == 0)
+                {
+                    Console.WriteLine("The name you have entered not in the address book");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Your contact list is empty");
+            }
+
+        }
     }
 }
