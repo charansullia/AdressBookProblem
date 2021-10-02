@@ -6,7 +6,10 @@ namespace AdressBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("welcome to adressbook computation");
+            AdressBookComputation adressBook = new AdressBookComputation();
+            adressBook.Add("Ashok", "kumar", "mangalore", "karnataka", "mangalore", 897098, 9987777689, "char@gmail.com");
+            adressBook.Contact();
+
         }
     }
 }
