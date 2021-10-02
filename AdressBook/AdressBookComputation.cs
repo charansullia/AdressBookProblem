@@ -6,27 +6,62 @@ namespace AdressBook
 {
     class AdressBookComputation
     {
-        string Firstname, Lastname, Address, City, State, Mail;
-        int Zip;
-        double Phonenumber;
-
-
-        public void Add(string firstname, string lastname, string address, string state, string city, int zip, double phonenumber, string email)
+        private static List<Person> Contacts = new List<Person>();
+        public static void AddMember()
         {
-            this.Firstname = firstname;
-            this.Lastname = lastname;
-            this.Address = address;
-            this.City = city;
-            this.State = state;
-            this.Phonenumber = phonenumber;
-            this.Zip = zip;
-            this.Mail = email;
+            Person person = new Person();
+
+            Console.Write("Enter First Name: ");
+            person.FirstName = Console.ReadLine();
+            Console.Write("Enter Last Name: ");
+            person.LastName = Console.ReadLine();
+            Console.Write("Enter Address: ");
+            person.Address = Console.ReadLine();
+            Console.Write("Enter City: ");
+            person.City = Console.ReadLine();
+            Console.Write("Enter State: ");
+            person.State = Console.ReadLine();
+            Console.Write("Enter Zip Code: ");
+            person.ZipCode = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Email : ");
+            person.email = Console.ReadLine();
+            Console.Write("Enter Phone Number : ");
+            person.PhoneNumber = Convert.ToDouble(Console.ReadLine());
+
+            Contacts.Add(person);
+
+            Console.WriteLine("Successfully Added");
         }
-        public void Contact()
+
+        public static void ViewContacts()
         {
-            Console.WriteLine("FirstName : " + this.Firstname + "\n" + "LastName : " + this.Lastname + "\n" + "Address : " + this.Address + "\n"
-                + "State : " + this.State + "\n" + "City : " + this.City + "\n" + "Zip : " + this.Zip + "\n"
-                + "PhoneNumber : " + this.Phonenumber + "\n" + "Mail Id : " + this.Mail);
+            if (Contacts.Count > 0)
+            {
+                Console.WriteLine("/t /t /t Your Contact List Has");
+                foreach (var person in Contacts)
+                {
+                    PrintValues(person);
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Address Book is Empty");
+            }
+        }
+
+        public static void PrintValues(Person person)
+        {
+            Console.WriteLine($"First Name : {person.FirstName}");
+            Console.WriteLine($"Last Name : {person.LastName}");
+            Console.WriteLine($"Address : {person.Address}");
+            Console.WriteLine($"City : {person.City}");
+            Console.WriteLine($"State : {person.State}");
+            Console.WriteLine($"Zip Code: {person.ZipCode}");
+            Console.WriteLine($"Phone Number: {person.PhoneNumber}");
+            Console.WriteLine($"Email: {person.email}");
+
         }
     }
 }
