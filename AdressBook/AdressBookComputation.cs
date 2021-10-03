@@ -27,9 +27,8 @@ namespace AdressBook
             person.email = Console.ReadLine();
             Console.Write("Enter Phone Number : ");
             person.PhoneNumber = Convert.ToDouble(Console.ReadLine());
-
+            Console.WriteLine("--------------------------------------------------");
             Contacts.Add(person);
-
             Console.WriteLine("Successfully Added");
         }
 
