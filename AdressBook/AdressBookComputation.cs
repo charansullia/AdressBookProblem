@@ -7,39 +7,79 @@ namespace AdressBook
     class AdressBookComputation
     {
         private static List<Person> Contacts = new List<Person>();
+        //adressBookDectionary to store values
+        private static Dictionary<string, List<Person>> adressBookDectionary = new Dictionary<string, List<Person>>();
         public static void AddMember()
         {
-            Person person = new Person();
+            string adressBookName;
+            Contacts = new List<Person>();
+            while (true)
+            {
+                Console.WriteLine("enter the name of adressBook");
+                adressBookName = Console.ReadLine();
+                //checking uniqueness of adressBook
+                if (adressBookDectionary.Count > 0)
+                {
+                    if (adressBookDectionary.ContainsKey(adressBookName))
+                    {
+                        Console.WriteLine("this name of adressBook Already exists");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+            Console.Write("number of contacts you want add:");
+            int numOfContacts = Convert.ToInt32(Console.ReadLine());
+            while (numOfContacts > 0)
+            {
+                //object for Person class
+                Person person = new Person();
 
-            Console.Write("Enter First Name: ");
-            person.FirstName = Console.ReadLine();
-            Console.Write("Enter Last Name: ");
-            person.LastName = Console.ReadLine();
-            Console.Write("Enter Address: ");
-            person.Address = Console.ReadLine();
-            Console.Write("Enter City: ");
-            person.City = Console.ReadLine();
-            Console.Write("Enter State: ");
-            person.State = Console.ReadLine();
-            Console.Write("Enter Zip Code: ");
-            person.ZipCode = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter Email : ");
-            person.email = Console.ReadLine();
-            Console.Write("Enter Phone Number : ");
-            person.PhoneNumber = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("--------------------------------------------------");
-            Contacts.Add(person);
-            Console.WriteLine("Successfully Added");
+                Console.Write("Enter First Name: ");
+                person.FirstName = Console.ReadLine();
+                Console.Write("Enter Last Name: ");
+                person.LastName = Console.ReadLine();
+                Console.Write("Enter Address: ");
+                person.Address = Console.ReadLine();
+                Console.Write("Enter City: ");
+                person.City = Console.ReadLine();
+                Console.Write("Enter State: ");
+                person.State = Console.ReadLine();
+                Console.Write("Enter Zip Code: ");
+                person.ZipCode = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter Email : ");
+                person.email = Console.ReadLine();
+                Console.Write("Enter Phone Number : ");
+                person.PhoneNumber = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("--------------------------------------------------");
+                Contacts.Add(person);
+                Console.WriteLine("**************************************************");
+                numOfContacts--;
+            }
+            //adding into adressBookDictionary
+            adressBookDectionary.Add(adressBookName, Contacts);
+            Console.WriteLine("successfully Added");
         }
-
+        //view contact
         public static void ViewContacts()
         {
-            if (Contacts.Count > 0)
+            if (adressBookDectionary.Count > 0)
             {
-                Console.WriteLine("/t /t /t Your Contact List Has");
-                foreach (var person in Contacts)
+                foreach (KeyValuePair<string, List<Person>> dict in adressBookDectionary)
                 {
-                    PrintValues(person);
+                    Console.WriteLine("\t\t\t{dict.key}");
+                    foreach (var AdressBook in dict.Value)
+                    {
+                        PrintValues(AdressBook);
+                        Console.WriteLine("**************************************************");
+                    }
 
                 }
 
